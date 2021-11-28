@@ -1,9 +1,7 @@
-package com.paul.song.network
+package com.paul.song.network.api
 
 import com.paul.song.network.apiresponse.NetworkResponse
-import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Header
 
 interface TecentNewsApiInterface {
     @GET("release/channel")

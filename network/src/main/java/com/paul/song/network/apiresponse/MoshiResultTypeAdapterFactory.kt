@@ -6,7 +6,7 @@ import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
 class MoshiResultTypeAdapterFactory(
-    private val envelope: Envelope
+    private val envelope: Envelope?
 ) : JsonAdapter.Factory {
 
     interface Envelope {
@@ -14,7 +14,7 @@ class MoshiResultTypeAdapterFactory(
         fun getErrorMessageKey(): String
         fun getDataKey(): String
         fun doesStatusCodeIndicateSuccess(statusCode: Int): Boolean
-        fun isNeedOpenEnvelope(): Boolean
+//        fun isNeedOpenEnvelope(): Boolean
     }
 
     override fun create(
@@ -32,10 +32,11 @@ class MoshiResultTypeAdapterFactory(
 
     class ResultTypeAdapter<T>(
         private val dataTypeAdapter: JsonAdapter<T>,
-        private val envelope: Envelope
+        private val envelope: Envelope?
     ) : JsonAdapter<T>() {
         override fun fromJson(reader: JsonReader): T? {
-            if (envelope.isNeedOpenEnvelope()) {
+//            if (envelope.isNeedOpenEnvelope()) {
+            if (envelope != null) {
                 reader.beginObject()
                 var errcode: Int? = null
                 var msg: String? = null

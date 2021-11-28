@@ -28,9 +28,6 @@ public class CommonRequestInterceptor implements Interceptor {
         Request.Builder builder = chain.request().newBuilder();
         builder.addHeader("os", "android");
         builder.addHeader("appVersion", this.requiredInfo.getAppVersionCode());
-        builder.addHeader("Source", "source");
-        builder.addHeader("Authorization", TencentUtil.getAuthorization(timeStr));
-        builder.addHeader("Date", timeStr);
         return chain.proceed(builder.build());
     }
 }

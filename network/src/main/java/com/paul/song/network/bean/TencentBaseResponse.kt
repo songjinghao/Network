@@ -1,4 +1,4 @@
-package com.paul.song.network.base
+package com.paul.song.network.bean
 
 import com.squareup.moshi.Json
 

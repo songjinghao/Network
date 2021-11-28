@@ -1,11 +1,11 @@
 package com.paul.song.network.application
 
 import android.app.Application
-import com.paul.song.network.NetworkApi
+import com.paul.song.network.base.BaseNetworkApi
 
 class NetworkApplication: Application() {
     override fun onCreate() {
         super.onCreate()
-        NetworkApi.init(Network(this))
+        BaseNetworkApi.init(Network(this))
     }
 }

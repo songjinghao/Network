@@ -1,4 +1,4 @@
-package com.paul.song.network
+package com.paul.song.network.api
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -15,7 +15,7 @@ data class NewsChannelsBean(
 
 @JsonClass(generateAdapter = true)
 data class ShowapiResBody(
-    @Json(name = "channelList")
+    @Json(name = "channelList1")
     val channelList: List<Channel>,
     @Json(name = "ret_code")
     val retCode: Int,

@@ -1,6 +1,6 @@
 package com.paul.song.network.apiresponse
 
-import com.paul.song.network.base.TencentBaseResponse
+import com.paul.song.network.bean.TencentBaseResponse
 import com.paul.song.network.error.BusinessException
 import com.paul.song.network.utils.MoshiUtils
 import okhttp3.Request
@@ -42,7 +42,7 @@ class NetworkResponseCall<S : Any>(
                         // The raw response body of an unsuccessful response. 500X
                         val errorResponse =
                             MoshiUtils.fromJson(
-                                error!!.string(),
+                                error.string(),
                                 TencentBaseResponse::class.java
                             )
                         errorConverter?.onFailure(BusinessException(
