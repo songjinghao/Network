@@ -4,8 +4,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class NewsChannelsWithoutEnvelopeBean(
-    @Json(name = "channelList")
+data class NewsChannelsJsonNpeBean(
+    @Json(name = "channel_list")
     val channelList: List<Channel>,
     @Json(name = "ret_code")
     val retCode: Int,

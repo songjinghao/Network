@@ -28,5 +28,23 @@ fun MainActivityScreen(viewModel: MainActivityScreenViewModel) {
         }, modifier = Modifier.padding(20.dp)) {
             Text(text = "获取腾讯新闻栏目并且打开信封")
         }
+
+        Button(onClick = {
+            viewModel.onGetChannelsAndOpenEnvelopeWithNullSaftyClicked()
+        }, modifier = Modifier.padding(20.dp)) {
+            Text(text = "Moshi的Kotlin空安全")
+        }
+
+        Button(onClick = {
+            viewModel.onHttpbinOrg404Clicked()
+        }, modifier = Modifier.padding(20.dp)) {
+            Text(text = "httpbin.org的404返回")
+        }
+
+        Button(onClick = {
+            viewModel.onHttpbinOrg501Clicked()
+        }, modifier = Modifier.padding(20.dp)) {
+            Text(text = "httpbin.org的501返回")
+        }
     }
 }

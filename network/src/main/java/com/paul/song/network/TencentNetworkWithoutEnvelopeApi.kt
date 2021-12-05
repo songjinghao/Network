@@ -7,8 +7,7 @@ import com.paul.song.network.base.BaseNetworkApi
 import com.paul.song.network.utils.TencentUtil
 import okhttp3.Interceptor
 
-object TencentNetworkWithoutEnvelopeApi :
-    BaseNetworkApi("https://service-o5ikp40z-1255468759.ap-shanghai.apigateway.myqcloud.com/") {
+object TencentNetworkWithoutEnvelopeApi : BaseNetworkApi() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getInterceptor(): Interceptor? {
@@ -40,5 +39,13 @@ object TencentNetworkWithoutEnvelopeApi :
                 return statusCode == 0
             }
         }
+    }
+
+    override fun getFormal(): String {
+        return "https://service-o5ikp40z-1255468759.ap-shanghai.apigateway.myqcloud.com/"
+    }
+
+    override fun getTest(): String {
+        return "https://service-o5ikp40z-1255468759.ap-shanghai.apigateway.myqcloud.com/"
     }
 }

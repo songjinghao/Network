@@ -5,17 +5,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class NewsChannelsBean(
-    @Json(name = "showapi_res_body")
-    val showapiResBody: ShowapiResBody,
-    @Json(name = "showapi_res_code")
-    val showapiResCode: Int,
-    @Json(name = "showapi_res_error")
-    val showapiResError: String
-)
-
-@JsonClass(generateAdapter = true)
-data class ShowapiResBody(
-    @Json(name = "channelList1")
+    @Json(name = "channelList")
     val channelList: List<Channel>,
     @Json(name = "ret_code")
     val retCode: Int,

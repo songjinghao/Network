@@ -5,6 +5,8 @@ import com.paul.song.network.apiresponse.NetworkResponse
 import com.paul.song.network.apiresponse.NetworkResponseAdapterFactory
 import com.paul.song.network.commoninterceptor.CommonRequestInterceptor
 import com.paul.song.network.commoninterceptor.CommonResponseInterceptor
+import com.paul.song.network.environment.EnvironmentActivity
+import com.paul.song.network.environment.IEnvironment
 import com.paul.song.network.error.GlobalErrorHandler
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -14,15 +16,18 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-abstract class BaseNetworkApi {
+abstract class BaseNetworkApi : IEnvironment {
     var mRetrofit: Retrofit
+    private var mBaseUrl: String = if (mIsFormal) getTest() else getFormal()
     private val globalErrorHandler = GlobalErrorHandler()
 
     companion object {
         private var iNetworkRequiredInfo: INetworkRequiredInfo? = null
+        private var mIsFormal = true
 
         fun init(networkRequiredInfo: INetworkRequiredInfo) {
             iNetworkRequiredInfo = networkRequiredInfo
+            mIsFormal = EnvironmentActivity.isOfficialEnvironment(networkRequiredInfo)
         }
     }
 
@@ -35,9 +40,9 @@ abstract class BaseNetworkApi {
         return mRetrofit.create(service)
     }
 
-    constructor(baseUrl: String) {
+    constructor() {
         val retrofitBuild = Retrofit.Builder()
-        retrofitBuild.baseUrl(baseUrl)
+        retrofitBuild.baseUrl(mBaseUrl)
         retrofitBuild.client(getOkHttpClient())
         retrofitBuild.addConverterFactory(MoshiConverterFactory.create(moshi))
         retrofitBuild.addCallAdapterFactory(NetworkResponseAdapterFactory(globalErrorHandler))

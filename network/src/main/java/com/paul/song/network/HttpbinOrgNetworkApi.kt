@@ -3,9 +3,17 @@ package com.paul.song.network
 import com.paul.song.network.base.BaseNetworkApi
 import okhttp3.Interceptor
 
-object HttpbinOrgNetworkApi : BaseNetworkApi("https://httpbin.org/") {
+object HttpbinOrgNetworkApi : BaseNetworkApi() {
 
     override fun getInterceptor(): Interceptor? {
         return null
+    }
+
+    override fun getFormal(): String {
+        return "https://httpbin.org/"
+    }
+
+    override fun getTest(): String {
+        return "https://httpbin.org/"
     }
 }
